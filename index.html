@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Page</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
+
+    <style>
+        body {
+            background-color: #000000;
+            background: linear-gradient(140deg, #000000, #000000);
+            background-size: 400% 400%;
+
+            -webkit-animation: background 18s ease infinite;
+            -moz-animation: background 18s ease infinite;
+            animation: background 18s ease infinite;
+        }
+
+        @-webkit-keyframes background {
+            0%{background-position:5% 0%}
+            50%{background-position:96% 100%}
+            100%{background-position:5% 0%}
+        }
+        @-moz-keyframes background {
+            0%{background-position:5% 0%}
+            50%{background-position:96% 100%}
+            100%{background-position:5% 0%}
+        }
+        @keyframes background {
+            0%{background-position:5% 0%}
+            50%{background-position:96% 100%}
+            100%{background-position:5% 0%}
+        }
+
+        .content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%);
+
+            font-family: -apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+            font-weight: bold;
+            font-size: 1.7rem;
+            text-align: center;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+        }
+        #text {
+            padding: 0.8rem;
+
+            border-radius: 15px;
+
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            transition: transform .3s;
+        }
+        #text:hover {
+            transform: scale(1.05);
+        }
+        #info {
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <span id="text" onclick="copy()">${req.params.live}</span>
+        <span id="info">Copy the text by pressing it</span>
+    </div>
+    <script>
+        function copy() {
+            const text = document.getElementById("text");
+            const info = document.getElementById("info");
+
+            navigator.clipboard.writeText(text.innerText);
+            info.innerText = "Copied!";
+            setTimeout(() => {info.innerText = "Copy the text pressing it"}, 2500);
+        }
+    </script>
+</body>
+</html>
